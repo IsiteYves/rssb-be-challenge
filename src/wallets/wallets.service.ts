@@ -13,7 +13,7 @@ export class WalletsService {
 
     async createWallet(createWalletDto: CreateWalletDto): Promise<Wallet> {
         const wallet = new Wallet();
-        wallet.customerId = createWalletDto.customerId;
+        wallet.customer.id = createWalletDto.customerId;
         return await this.walletRepository.save(wallet);
     }
 
