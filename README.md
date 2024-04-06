@@ -1,73 +1,58 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# TEKANA E-WALLET Execution Strategy
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A solution for a legacy transaction platform that serves 1 million customers worldwide.
 
-## Installation
+## Team Collaboration and Planning (Day 1 - Week 2)
 
-```bash
-$ npm install
-```
+### Kick-Off Meeting
 
-## Running the app
+We must convene all stakeholders (Back-end, Front-end, UI/UX, Product Owner, Scrum Master, and Business SMEs – Small and Medium-Sized Industries) to establish communication channels, project goals, and success metrics.
 
-```bash
-# development
-$ npm run start
+### Requirements Gathering
 
-# watch mode
-$ npm run start:dev
+Collaborate with the Business team to thoroughly understand existing functionalities, user needs, and non-functional requirements (performance, security).
 
-# production mode
-$ npm run start:prod
-```
+### System Architecture Definition
 
-## Test
+Define the high-level system architecture considering scalability, maintainability, and resilience. Explore potential technologies like NestJS, SpringBoot, or other modern frameworks. In this case, I chose NestJS for many reasons:
 
-```bash
-# unit tests
-$ npm run test
+- I have been using it already, and it provides me with a robust set of tools to write cleaner, more concise code and catch errors before they occur.
+- It supports TypeScript, which offers strong typing and improves code maintainability by catching errors early in development. This is crucial for a large-scale financial application like Tekana-eWallet.
 
-# e2e tests
-$ npm run test:e2e
+### Task Breakdown and Estimation
 
-# test coverage
-$ npm run test:cov
-```
+Break down the project into user stories and epics. Estimate development effort for each user story and create a comprehensive project timeline.
 
-## Support
+## System Design and Development (Week 3 - Go-Live)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Database Design
 
-## Stay in touch
+Design an optimized database schema with proper data types, normalization, and indexing strategies to ensure high performance and data integrity.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### API Design
 
-## License
+Design a clean and well-documented RESTful API adhering to best practices (clear naming, proper HTTP methods, error handling, versioning, and security).
 
-Nest is [MIT licensed](LICENSE).
+### Microservices Architecture
+
+Decompose the system into modular, independent microservices for improved scalability and maintainability.
+
+### Development and Code Reviews
+
+Implement functionalities following the chosen framework's best practices. Conduct regular code reviews to ensure adherence to coding standards, readability, and maintainability.
+
+### Unit and Integration Testing
+
+Write comprehensive unit and integration tests for all functionalities to ensure code quality and catch regressions early.
+
+## Deployment and Monitoring (Go-Live - Ongoing)
+
+### Deployment Strategy
+
+Define a deployment strategy for the pilot system, considering rollback options and minimal downtime.
+
+### System Monitoring
+
+Set up monitoring tools to track system health, performance.
