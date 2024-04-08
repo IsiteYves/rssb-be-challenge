@@ -1,9 +1,19 @@
-import { TransactionType } from '../enums/transactiontype.enum';
+import { ApiProperty } from '@nestjs/swagger';
+import { TransactionType } from '@prisma/client';
 
 export class ReadTransactionDto {
-    id: number;
-    walletId: number;
-    amount: number;
+    @ApiProperty()
+    id: string;
+
+    @ApiProperty()
+    walletId: string;
+
+    @ApiProperty()
+    amount: string;
+    
+    @ApiProperty()
     type: TransactionType;
+    
+    @ApiProperty()
     createdAt: Date;
 }

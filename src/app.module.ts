@@ -1,28 +1,30 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config'; // Import ConfigModule
+import { Module, ValidationPipe } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { CustomersModule } from './customers/customers.module';
 import { WalletsModule } from './wallets/wallets.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { AuthModule } from './auth/auth.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(), // Load environment variables
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT, 10),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
     CustomersModule,
     WalletsModule,
     TransactionsModule,
     AuthModule,
   ],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+      useValue: {
+        transform: true, // Automatically transform payloads to DTO instances
+        skipMissingProperties: false, // Enforce validation for missing properties
+      },
+    }
+  ]
 })
-export class AppModule { }
+export class AppModule {}

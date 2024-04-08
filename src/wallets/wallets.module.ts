@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Wallet } from '../database/entities/wallet.entity';
 import { WalletsController } from './wallets.controller';
 import { WalletsService } from './wallets.service';
+import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Wallet])],
+  imports: [PrismaModule],
   controllers: [WalletsController],
   providers: [WalletsService],
 })

@@ -1,22 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Customer } from '../database/entities/customer.entity';
+import { PrismaClient, Customer } from '@prisma/client';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
 
 @Injectable()
 export class CustomersService {
-    constructor(
-        @InjectRepository(Customer)
-        private readonly customerRepository: Repository<Customer>,
-    ) { }
+    constructor(private readonly prisma: PrismaClient) {}
 
     async create(createCustomerDto: CreateCustomerDto): Promise<Customer> {
-        const customer = this.customerRepository.create(createCustomerDto);
-        return this.customerRepository.save(customer);
+        return this.prisma.customer.create({
+            data: {
+                name: createCustomerDto.name,
+                email: createCustomerDto.email,
+            },
+        });
     }
 
     async findAll(): Promise<Customer[]> {
-        return this.customerRepository.find();
+        return this.prisma.customer.findMany();
     }
 }

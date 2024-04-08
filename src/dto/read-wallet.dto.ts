@@ -1,4 +1,9 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class ReadWalletDto {
-    id: number;
-    balance: number;
+    @ApiProperty()
+    id: string;
+
+    @ApiProperty()
+    balance: string;
 }

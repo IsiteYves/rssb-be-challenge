@@ -1,0 +1,15 @@
+import { Injectable } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+
+@Injectable()
+export class PrismaService {
+  prisma: PrismaClient;
+
+  constructor() {
+    this.prisma = new PrismaClient(); // Initialize PrismaClient
+  }
+
+  async getPrismaClient(): Promise<PrismaClient> {
+    return this.prisma;
+  }
+}

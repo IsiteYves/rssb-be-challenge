@@ -1,34 +1,29 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { PrismaClient, Transaction } from '@prisma/client';
 import { CreateTransactionDto } from '../dto/create-transaction.dto';
 import { ReadTransactionDto } from '../dto/read-transaction.dto';
-import { TransactionEntity } from '../database/entities/transaction.entity';
 
 @Injectable()
 export class TransactionsService {
-    constructor(
-        @InjectRepository(TransactionEntity)
-        private readonly transactionRepository: Repository<TransactionEntity>,
-    ) { }
+    constructor(private readonly prisma: PrismaClient) {}
 
     async createTransaction(createTransactionDto: CreateTransactionDto): Promise<ReadTransactionDto> {
         const { amount, type, walletId } = createTransactionDto;
 
-        // Create transaction entity
-        const transaction = new TransactionEntity();
-        transaction.wallet.id = walletId;
-        transaction.amount = amount;
-        transaction.type = type;
-
-        // Save transaction to database
-        const createdTransaction = await this.transactionRepository.save(transaction);
+        // Let me create transaction in the database using Prisma
+        const createdTransaction = await this.prisma.transaction.create({
+            data: {
+                amount,
+                type,
+                walletId,
+            },
+        });
 
         // Convert the created transaction entity to ReadTransactionDto format
         const readTransactionDto: ReadTransactionDto = {
             id: createdTransaction.id,
-            walletId: createdTransaction.wallet.id,
-            amount: createdTransaction.amount,
+            walletId: createdTransaction.walletId,
+            amount: createdTransaction.amount.toString(),
             type: createdTransaction.type,
             createdAt: createdTransaction.createdAt,
         };
@@ -36,9 +31,13 @@ export class TransactionsService {
         return readTransactionDto;
     }
 
-    async getTransactionById(id: number): Promise<ReadTransactionDto> {
-        // Find transaction by ID in the database
-        const transaction = await this.transactionRepository.findOneBy({ id });
+    async getTransactionById(id: string): Promise<ReadTransactionDto> {
+        // Find transaction by ID in the database using Prisma
+        const transaction = await this.prisma.transaction.findUnique({
+            where: {
+                id,
+            },
+        });
 
         // If transaction is not found, throw NotFoundException
         if (!transaction) {
@@ -48,13 +47,12 @@ export class TransactionsService {
         // Convert the found transaction entity to ReadTransactionDto format
         const readTransactionDto: ReadTransactionDto = {
             id: transaction.id,
-            walletId: transaction.wallet.id,
-            amount: transaction.amount,
+            walletId: transaction.walletId,
+            amount: transaction.amount.toString(),
             type: transaction.type,
             createdAt: transaction.createdAt,
         };
 
         return readTransactionDto;
     }
-
 }
