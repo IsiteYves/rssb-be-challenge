@@ -39,3 +39,6 @@ build/config\.gypi
 
 .npmrc
 pnpm-lock.yaml
+
+# environment variables
+.env
